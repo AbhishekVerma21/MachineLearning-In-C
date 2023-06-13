@@ -1,6 +1,6 @@
 /*
 Simple perceptron model 
-                        Input (X) ---- W, b ----> [Summation | Activation] -----> Output (Y)
+                        Input (X) ---- W, b ----> [Summation] -----> Output (Y)
 */
 
 #include<stdio.h>
@@ -17,9 +17,6 @@ float train[][2] = {
         {5,10},
 };
 
-// float sigmoid(float y){
-//     return 1.0f / (1.0f + exp(-y));
-// }
 
 #define train_count sizeof(train) / sizeof(train[0])
 
@@ -33,8 +30,6 @@ float cost(float w, float b) {
         float x = train[i][0];
         float y = x * w + b; // linear combination of weight and input
         //error or distance of actual and expected
-        // y = sigmoid(y); 
-        // printf("y = %f\n", y);
         float d = y - train[i][1];
         result += d*d; //squared error
     }
