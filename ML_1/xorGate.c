@@ -32,7 +32,7 @@ sample xor_train[] = {
 sample *train = xor_train;
 
 #define train_count 4
-#define train_frequency 100000
+#define train_frequency 1000000
 
 float random_number(void) {
     return (float) rand() / (float) RAND_MAX;
@@ -177,20 +177,37 @@ int main(void){
     Xor m = random_xor();
     Xor g = parameter_update(m);
 
+
+    // printf("\n---------OR Neuron Output------\n"); //naming a neuron as or nor nand does not mean it will behave like that, these are just names here.
+    // for(size_t i=0;i<2;i++){
+    //     for(size_t j=0;j<2;j++){
+    //         printf("%zu OR %zu  =  %f \n", i, j, sigmoid(g.or_w1*train[i][0] + g.or_w2*train[i][1] + g.or_b));
+    //     }
+    // }
+
+    // printf("\n--------NAND Neuron Output-----\n"); //naming a neuron as or nor nand does not mean it will behave like that, these are just names here.
+    // for(size_t i=0;i<2;i++){
+    //     for(size_t j=0;j<2;j++){
+    //         printf("%zu OR %zu  =  %f \n", i, j, sigmoid(g.nand_w1*train[i][0] + g.nand_w2*train[i][1] + g.or_b));
+    //     }
+    // }
+
+
     //output
-    printf("\n---------OUTPUT----------------\n");
+    printf("\n\n---------FINAL OUTPUT----------------\n");
     for(size_t i=0;i<2;i++){
         for(size_t j=0;j<2;j++){
             printf("%zu OR %zu  =  %f \n", i, j, forward(g, i, j));
         }
     }
-
     /*
         Note : If you do not used bias in this problem, you will never be able to get correct output when both input is 0
         Bias is basically use to shift your model so that when no weight is present the model start from correct pos
 
         Final cost always depends on the initialization of your weight.
         In this case it is random so sometimes it might comes a bit high.
+        
+        Your model here is 'g'. where g stores weight and biases. I call it a binary model.
     */   
     return 0;
 }
