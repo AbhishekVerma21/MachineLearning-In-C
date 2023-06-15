@@ -95,7 +95,7 @@ float cost(Xor m) {
 I found that if I need to reduce the iteration in cases like these,
 I need to increase the also increase the rate
 */
-Xor parameter_update(Xor m) {
+Xor model_update(Xor m) {
     float eps = 1e-3; // for derivative (f(x + h) - f(x))/h
     float rate = 1e-1; // use so that my change in the direction of minimum cost will not overshoot
     printf("Start Cost is: %f\n", cost(m));
@@ -175,7 +175,7 @@ Xor random_xor(void) {
 int main(void){
     srand(time(0));
     Xor m = random_xor();
-    Xor g = parameter_update(m);
+    Xor g = model_update(m);
 
 
     // printf("\n---------OR Neuron Output------\n"); //naming a neuron as or nor nand does not mean it will behave like that, these are just names here.
